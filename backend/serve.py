@@ -8,6 +8,8 @@ import numpy as np
 import os, io, json
 from datetime import datetime
 
+PORT = int(os.environ.get("PORT", 5000))
+
 # -----------------------------
 # SINGLE app instance
 # -----------------------------
@@ -1001,14 +1003,12 @@ def generate_pdf():
 # -----------------------------
 # RUN SERVER
 # -----------------------------
-import webbrowser
-import threading
-
-def open_browser():
-    webbrowser.open_new("http://localhost:5000")
-
 if __name__ == "__main__":
-    if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
-        threading.Timer(1, open_browser).start()
-
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    # When running locally:
+    if "PORT" not in os.environ:
+        print("Running locally on http://localhost:5000")
+        app.run(host="0.0.0.0", port=5000, debug=True)
+    else:
+        # When running on Render:
+        print(f"Running on Render at https://sample (PORT={PORT})")
+        app.run(host="0.0.0.0", port=PORT, debug=False)
