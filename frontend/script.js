@@ -1,9 +1,11 @@
 const fileUpload = document.getElementById("fileUpload");
 const preview = document.getElementById("preview");
 
-// Change this if your server runs elsewhere
-const PREDICT_URL = "http://localhost:5000/predict";
-const GENERATE_PDF_URL = "http://localhost:5000/generate_pdf";
+// Auto-detect API base URL
+const API_BASE = "https://paw-print-backend.onrender.com";
+ 
+const PREDICT_URL = `${API_BASE}/predict`;
+const GENERATE_PDF_URL = `${API_BASE}/generate_pdf`;
 
 let uploadedFile = null; // keep uploaded file for PDF
 
