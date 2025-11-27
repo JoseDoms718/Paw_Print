@@ -1004,11 +1004,12 @@ def generate_pdf():
 # RUN SERVER
 # -----------------------------
 if __name__ == "__main__":
-    # When running locally:
+    # Local Development
     if "PORT" not in os.environ:
         print("Running locally on http://localhost:5000")
         app.run(host="0.0.0.0", port=5000, debug=True)
+
+    # Render Deployment
     else:
-        # When running on Render:
-        print(f"Running on Render at https://sample (PORT={PORT})")
+        print(f"Running on Render (PORT={PORT}) — accessible from any domain")
         app.run(host="0.0.0.0", port=PORT, debug=False)
